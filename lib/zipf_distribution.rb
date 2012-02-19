@@ -14,9 +14,9 @@ class ZipfDistribution
   def freq
     @freq ||= begin
       freq = Hash.new(0)
-      words.each { |word| freq[word] += 1 }.sort_by { |k, v| v }
+      words.each { |word| freq[word] += 1 }
 
-      freq
+      Hash[freq.sort_by { |k, v| -v }]
     end
   end
 
