@@ -1,4 +1,8 @@
+require_relative 'plotter'
+
 class ZipfDistribution
+  include Plotter
+
   def initialize(path_to_file)
     @path_to_file = path_to_file
   end
