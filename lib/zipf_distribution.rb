@@ -32,7 +32,7 @@ class ZipfDistribution
   end
 
   def probability(word)
-    total_count / freq[word].to_f
+    freq[word].to_f / total_count
   end
 
   def zconst(word)
