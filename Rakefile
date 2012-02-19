@@ -8,3 +8,7 @@ Rake::TestTask.new do |t|
 end
 
 task :default => :test
+
+task :example do
+  ruby "examples/run.rb"
+end
