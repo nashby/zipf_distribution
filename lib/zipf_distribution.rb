@@ -1,55 +1,57 @@
 require_relative 'plotter'
 
-class ZipfDistribution
-  include Plotter
+module Zipf
+  class Distribution
+    include Zipf::Plotter
 
-  def initialize(path_to_file)
-    @path_to_file = path_to_file
-  end
-
-  def text
-    @text ||= read
-  end
-
-  def words
-    @words ||= text.downcase.scan(/\w+/)
-  end
-
-  def freq
-    @freq ||= begin
-      freq = Hash.new(0)
-      words.each { |word| freq[word] += 1 }
-
-      Hash[freq.sort_by { |k, v| -v }]
+    def initialize(path_to_file)
+      @path_to_file = path_to_file
     end
-  end
 
-  def ranks
-    @ranks ||= begin
-      ranks = {}
-      freq.group_by { |k, v| v }.each_with_index do |(prob, word), i|
-        word.each { |word, _| ranks[word] = i + 1 }
+    def text
+      @text ||= read
+    end
+
+    def words
+      @words ||= text.downcase.scan(/\w+/)
+    end
+
+    def freq
+      @freq ||= begin
+        freq = Hash.new(0)
+        words.each { |word| freq[word] += 1 }
+
+        Hash[freq.sort_by { |k, v| -v }]
       end
-
-      ranks
     end
-  end
 
-  def probability(word)
-    freq[word].to_f / total_count
-  end
+    def ranks
+      @ranks ||= begin
+        ranks = {}
+        freq.group_by { |k, v| v }.each_with_index do |(prob, word), i|
+          word.each { |word, _| ranks[word] = i + 1 }
+        end
 
-  def zconst(word)
-    probability(word) * ranks[word]
-  end
+        ranks
+      end
+    end
 
-  private
+    def probability(word)
+      freq[word].to_f / total_count
+    end
 
-  def read
-    File.read(@path_to_file).chomp
-  end
+    def zconst(word)
+      probability(word) * ranks[word]
+    end
 
-  def total_count
-    words.count
+    private
+
+    def read
+      File.read(@path_to_file).chomp
+    end
+
+    def total_count
+      words.count
+    end
   end
 end

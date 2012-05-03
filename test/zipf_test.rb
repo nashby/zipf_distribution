@@ -1,9 +1,9 @@
 require 'test_helper'
 
-describe ZipfDistribution do
+describe Zipf::Distribution do
 
   describe "simple text" do
-    subject { ZipfDistribution.new(File.join(File.dirname(__FILE__), 'fixtures/test.txt')) }
+    subject { Zipf::Distribution.new(File.join(File.dirname(__FILE__), 'fixtures/test.txt')) }
 
     it 'returns text' do
       subject.text.must_equal "one one one one one two two two two three three four four five"
@@ -31,7 +31,7 @@ describe ZipfDistribution do
   end
 
   describe "big text" do
-    subject { ZipfDistribution.new(File.join(File.dirname(__FILE__), 'fixtures/big_text.txt')) }
+    subject { Zipf::Distribution.new(File.join(File.dirname(__FILE__), 'fixtures/big_text.txt')) }
 
     # for the english texts Zipf's const ~ 0.1
     it 'returns zconst' do

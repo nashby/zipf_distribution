@@ -1,6 +1,6 @@
 require_relative '../lib/zipf_distribution'
 
-z = ZipfDistribution.new(File.join(File.dirname(__FILE__), 'text.txt'))
+z = Zipf::Distribution.new(File.join(File.dirname(__FILE__), 'text.txt'))
 
 p z.freq
 p z.ranks
