@@ -13,7 +13,7 @@ module Zipf
     end
 
     def words
-      @words ||= text.downcase.scan(/\w+/)
+      @words ||= text.downcase.scan(/\w+/).reject { |word| Zipf::STOP_WORDS.include?(word) || word.size <= 2 }
     end
 
     def freq

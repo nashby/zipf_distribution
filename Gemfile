@@ -4,3 +4,5 @@ gem 'rake'
 gem 'gruff'
 gem 'rmagick'
 gem 'minitest', '~> 2.11.0'
+
+gem 'tactful_tokenizer'

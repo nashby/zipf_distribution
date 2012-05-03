@@ -35,8 +35,8 @@ describe Zipf::Distribution do
 
     # for the english texts Zipf's const ~ 0.1
     it 'returns zconst' do
-      assert_in_delta 0.1, subject.zconst('of'), 0.08
-      assert_in_delta 0.1, subject.zconst('the'), 0.08
+      assert_in_delta 0.01, subject.zconst('find'), 0.08
+      assert_in_delta 0.01, subject.zconst('data'), 0.08
     end
   end
 end
