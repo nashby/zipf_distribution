@@ -1,0 +1,1 @@
+Perl is a general-purpose programming language originally developed for text manipulation, but as of 2010 is used for a wide range of tasks including system administration, web development, network programming, games, bioinformatics, and GUI development.
