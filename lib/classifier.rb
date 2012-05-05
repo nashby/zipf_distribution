@@ -3,7 +3,8 @@ require_relative 'zipf_distribution'
 module Zipf
   class Classifier
     attr_reader :categories
-
+    attr_reader :ranks_to_classify
+    
     RANKS = 10
 
     def initialize(*categories)
@@ -16,7 +17,7 @@ module Zipf
 
     def classify(path_to_file)
       zipf  = Zipf::Distribution.new(path_to_file)
-      ranks_to_classify = zipf.ranks
+      @ranks_to_classify = zipf.ranks
 
       categories_to_choose = {}
 
@@ -27,7 +28,7 @@ module Zipf
           classified.merge!(Hash[ranks.to_a.take(RANKS)])
         end
 
-        categories_to_choose[name] = similar_keys_count(ranks_to_classify, classified)
+        categories_to_choose[name] = similar_keys_count(@ranks_to_classify, classified)
       end
 
       most_similar(categories_to_choose)
