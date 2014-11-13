@@ -1,8 +1,9 @@
-#require_relative 'plotter'
+require_relative 'stop_words'
+require_relative 'plotter'
 
 module Zipf
   class Distribution
-    #include Zipf::Plotter
+    include Zipf::Plotter
 
     def initialize(path_to_file)
       @path_to_file = path_to_file
